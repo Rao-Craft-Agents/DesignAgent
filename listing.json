@@ -1,0 +1,20 @@
+{
+  "name": "Design",
+  "tagline": "An app's design system as Swift: brand colours, colour roles, spacing, radii, a type scale and fonts, in light and dark.",
+  "category": "developer",
+  "keywords": [
+    "swift",
+    "swiftui",
+    "design system",
+    "colors",
+    "typography",
+    "dark mode",
+    "granite",
+    "loom"
+  ],
+  "platforms": [
+    "macOS 14"
+  ],
+  "license": "MIT",
+  "description": "An app's design system as Swift, from compact lines: `cream: #FBF7F0/#1A1714` for a brand colour, `background = cream` for the role views read, `title: 28 bold rounded` for a type style, `card: 14` for a radius, `sunrise: saffron tomato` for a gradient. Design writes Brand.swift, Brand.Color.swift, Style.swift and Fonts.swift in the shape Loom keeps its design, so views write `Color.background`, `.padding(.layer4)`, `.font(.brandTitle)` and `Brand.Colors.cream`.\n\nA light/dark pair switches with the appearance, every type style follows Dynamic Type, and the code builds for iOS 17 and macOS 14 in Swift 5 and Swift 6. A role reads the asset catalog's colour set of its name when the project has one (namespaces kept), so an app that keeps its colours in Xcode needs no lines. Font files are read for their real faces, copied beside the code and registered from the app's bundle; each weight is drawn by the nearest face. `modifiers: true` adds `.cardStyle()`, `.sectionStyle()` and `.brandBackground()`.\n\nNo model is asked: the same lines make the same files every time. A line it cannot read is refused with the reason, every one at once, and nothing is written until every file parses.\n\nOne of the Rao Craft Agents: independent packages that, tagged in prompts along the life of a project, build an app of Loom's quality."
+}
