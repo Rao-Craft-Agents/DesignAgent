@@ -116,3 +116,16 @@ final class HostFolderTests: XCTestCase {
         for path in paths ?? [] { XCTAssertTrue(path.hasPrefix(folder.path + "/"), path) }
     }
 }
+
+/// A Loom-layout app's Shared folder holds only App.swift and AppDelegate.swift loose.
+final class LayoutFolderTests: XCTestCase {
+    func testPointedAtSharedItselfTheFilesGoInSharedDesign() async throws {
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent("design-layout-\(UUID().uuidString.prefix(8))", isDirectory: true)
+        try FileManager.default.createDirectory(at: folder.appendingPathComponent("Services"), withIntermediateDirectories: true)
+        let input = try JSONSerialization.data(withJSONObject: ["palette": ["ink: #111111/#EEEEEE"], "into": "Shared", "directory": folder.path])
+        let answer = try await AnyAgentPackage(DesignAgent.self).perform(input, host: AgentHost(directory: folder.path))
+        let paths = try XCTUnwrap(try JSONSerialization.jsonObject(with: answer) as? [String: Any])["paths"] as? [String] ?? []
+        XCTAssertFalse(paths.isEmpty)
+        for path in paths where path.hasSuffix("Brand.swift") { XCTAssertTrue(path.hasSuffix("Shared/Design/Brand.swift"), path) }
+    }
+}

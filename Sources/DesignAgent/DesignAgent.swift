@@ -124,7 +124,7 @@ public struct DesignAgent: GraniteAgentPackage {
     static func write(_ input: Input, note: @Sendable (String) -> Void, yield: (DesignFrame) -> Void) throws -> DesignResult {
         let (spec, problems) = DesignSpec.read(input)
         let files = AgentFiles(directory: input.directory)
-        let folder = files.resolve(input.into ?? "Shared/Design")
+        let (folder, layoutNote) = files.ownFolder(files.resolve(input.into ?? "Shared/Design"), own: "Design")
         let walk = ProjectWalk(root: files.root)
         let resolution = DesignResolver.resolve(spec, files: files, folder: folder, walk: walk)
         guard problems.isEmpty, resolution.problems.isEmpty, let design = resolution.design else {
@@ -150,6 +150,6 @@ public struct DesignAgent: GraniteAgentPackage {
         return DesignResult(path: written.first, paths: written, colors: design.colors.map(\.name), roles: design.roles.map(\.summary),
                             layers: design.layers, radii: design.radii.map(\.name), type: design.typeScale.map(\.member),
                             gradients: design.gradients.map(\.name), faces: faces.map(\.postScript),
-                            notes: resolution.notes + clashes)
+                            notes: [layoutNote].compactMap { $0 } + resolution.notes + clashes)
     }
 }
