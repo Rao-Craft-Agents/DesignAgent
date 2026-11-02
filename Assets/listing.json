@@ -1,0 +1,19 @@
+{
+  "name": "Design",
+  "tagline": "An app's design system as Swift: brand colours, colour roles, spacing, radii, a type scale and fonts, in light and dark.",
+  "category": "developer",
+  "keywords": [
+    "swift",
+    "swiftui",
+    "design system",
+    "colors",
+    "typography",
+    "dark mode",
+    "granite",
+    "loom"
+  ],
+  "platforms": [
+    "macOS 14"
+  ],
+  "license": "MIT"
+}
