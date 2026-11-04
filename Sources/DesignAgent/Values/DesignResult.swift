@@ -1,7 +1,8 @@
 import Foundation
+import GraniteAgents
 
 /// What a call answers: the files written, as absolute paths, and the names views write to use them.
-public struct DesignResult: Codable, Sendable, Equatable {
+public struct DesignResult: AgentAnswer, Equatable {
     /// The first file written.
     public var path: String?
     /// Every file written: the design files, the font files copied beside them, and the modifiers when asked.
